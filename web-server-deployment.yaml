@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-server
+  namespace: produzione-wqlmd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-server
+  template:
+    metadata:
+      labels:
+        app: web-server
+    spec:
+      containers:
+      - name: nginx
+        image: 10.38.36.43:5000/pcm/web-server:v1.0.0
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-server-lb
+  namespace: produzione-wqlmd
+spec:
+  type: LoadBalancer
+  selector:
+    app: web-server
+  ports:
+  - port: 80
+    targetPort: 80
