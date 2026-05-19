@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: 10.107.176.178/pcm/web-server:v1.0.0
+        image: nginx:stable-alpine
         ports:
         - containerPort: 80
 ---
