@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: harbor-core.ncr-system.svc.cluster.local/pcm/web-server:v1.0.0
+        image: 10.107.176.178/pcm/web-server:v1.0.0
         ports:
         - containerPort: 80
 ---
