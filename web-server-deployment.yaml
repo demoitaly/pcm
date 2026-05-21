@@ -13,11 +13,22 @@ spec:
       labels:
         app: web-server
     spec:
+      # Secret per GitHub
+      imagePullSecrets:
+      - name: ghcr-secret
       containers:
       - name: nginx
-        image: nginx:stable-alpine
+        # Immagine su GHCR
+        image: ghcr.io/demoitaly/web-server:v1.0.0
         ports:
         - containerPort: 80
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
 ---
 apiVersion: v1
 kind: Service
@@ -25,9 +36,12 @@ metadata:
   name: web-server-lb
   namespace: produzione-wqlmd
 spec:
+  # Load Balancer nativo di NKP
   type: LoadBalancer
   selector:
     app: web-server
   ports:
-  - port: 80
+  - name: http
+    port: 80
     targetPort: 80
+    protocol: TCP
