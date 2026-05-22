@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web-server
-  namespace: produzione-wqlmd
+  namespace: progetto-alfa-tvbrq
 spec:
   replicas: 2
   selector:
