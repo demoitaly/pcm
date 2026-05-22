@@ -15,7 +15,7 @@ spec:
     spec:
       # Secret per GitHub
       imagePullSecrets:
-      - name: ghcr-secret
+      - name: docker-imagepull-secret
       containers:
       - name: nginx
         # Immagine su GHCR
