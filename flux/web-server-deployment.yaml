@@ -19,7 +19,7 @@ spec:
       containers:
       - name: nginx
         # Immagine su GHCR
-        image: ghcr.io/demoitaly/web-server:v1.0.2
+        image: ghcr.io/demoitaly/web-server:v1.0.2 # {"$imagepolicy": "progetto-alfa-tvbrq:demo-image-policy"}
         ports:
         - containerPort: 80
         resources:
