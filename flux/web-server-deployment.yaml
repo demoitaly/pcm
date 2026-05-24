@@ -34,7 +34,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: web-server-lb
-  namespace: produzione-wqlmd
+  namespace: progetto-alfa-tvbrq
 spec:
   # Load Balancer nativo di NKP
   type: LoadBalancer
