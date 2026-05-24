@@ -1,0 +1,23 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageUpdateAutomation
+metadata:
+  name: demo
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: demo
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        email: fluxcdbot@your-org.com
+        name: fluxcdbot
+      messageTemplate: '...'
+    push:
+      branch: main
+  update:
+    path: ./flux
+    strategy: Setters
