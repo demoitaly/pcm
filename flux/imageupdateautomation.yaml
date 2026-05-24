@@ -13,7 +13,7 @@ spec:
         branch: main
     commit:
       author:
-        email: fluxcdbot@your-org.com
+        email: fluxcdbot@demoitaly.com
         name: fluxcdbot
       messageTemplate: '...'
     push:
