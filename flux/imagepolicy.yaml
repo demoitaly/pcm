@@ -5,7 +5,7 @@ metadata:
   namespace: progetto-alfa-tvbrq
 spec:
   imageRepositoryRef:
-    name: demo-image-policy
+    name: demo-image-repo
   policy:
     semver:
       # Prende l'ultima versione stabile disponibile"
