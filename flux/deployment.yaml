@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployments-wildfly
+  namespace: demo
+  labels:
+    name: wildfly-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: wildfly-pod
+  template:
+    metadata:
+      labels:
+        name: wildfly-pod
+    spec:
+      imagePullSecrets:
+        - name: docker-imagepull-secret
+      containers:
+        - name: demo
+          image: 10.38.36.43:5000/pcm/wildfly:v1 # {"$imagepolicy": "demo:demo"}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080

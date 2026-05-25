@@ -1,12 +1,13 @@
-apiVersion: image.toolkit.fluxcd.io/v1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: demo-image-policy
-  namespace: progetto-alfa-tvbrq
+  name: demo
 spec:
   imageRepositoryRef:
-    name: demo-image-repo
+    name: demo
+  filterTags:
+    pattern: 'v(?P<version>[0-9]+)$'
+    extract: '$version'
   policy:
-    semver:
-      # Prende l'ultima versione stabile disponibile"
-      range: ">=1.0.0" 
+    alphabetical:
+      order: asc

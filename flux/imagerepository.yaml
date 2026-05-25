@@ -1,8 +1,12 @@
-apiVersion: image.toolkit.fluxcd.io/v1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
- name: demo-image-repo
- namespace: progetto-alfa-tvbrq
+  name: demo
 spec:
- image: ghcr.io/demoitaly/web-server
- interval: 1m0s
+  image: 10.38.36.43:5000/pcm/wildfly
+  interval: 1m0s
+  insecure: true
+  secretRef:
+    name: docker-imagepull-secret
+  certSecretRef:
+    name: harbor-ca

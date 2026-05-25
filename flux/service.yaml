@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: wildfly-svc
+  namespace: demo
+spec:
+  ports:
+    - port: 8080 # Default port for image
+  selector:
+    name: wildfly-pod
