@@ -1,25 +1,54 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployments-wildfly
-  namespace: demo
+  name: pagina-html
   labels:
-    name: wildfly-pod
+    app: pagina-html
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: wildfly-pod
+      app: pagina-html
   template:
     metadata:
       labels:
-        name: wildfly-pod
+        app: pagina-html
     spec:
-      imagePullSecrets:
-        - name: docker-imagepull-secret
       containers:
-        - name: demo
-          image: 10.38.36.43:5000/pcm/wildfly:v1 # {"$imagepolicy": "demo:demo"}
-          imagePullPolicy: Always
+        - name: pagina-html
+          image: 10.38.36.43:5000/pcm/html:v1 # {"$imagepolicy": "demo:demo"}          
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pagina-html-service
+spec:
+  selector:
+    app: pagina-html
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pagina-html-ingress
+spec:
+  ingressClassName: kommander-traefik
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pagina-html-service
+                port:
+                  number: 80
