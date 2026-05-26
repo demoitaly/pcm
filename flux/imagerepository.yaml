@@ -3,9 +3,8 @@ kind: ImageRepository
 metadata:
   name: demo
 spec:
-  image: 10.38.36.43:5000/pcm/wildfly
+  image: 10.38.36.43:5000/pcm/html
   interval: 1m0s
-  insecure: true
   secretRef:
     name: docker-imagepull-secret
   certSecretRef:
