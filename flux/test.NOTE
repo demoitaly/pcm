@@ -7,3 +7,8 @@ cambiare il tag  della versione da v2 a v3 ( sempre crescente )
 
 docker build -t 10.38.36.43:5000/pcm/html:v2 .
 docker push  10.38.36.43:5000/pcm/html:v2
+
+controlalre che l'app si aggiorna
+
+https://10.38.36.46/
+
